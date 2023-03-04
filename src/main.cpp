@@ -35,8 +35,8 @@ void setup() {
   digitalWrite(LED_RED, LOW);
 
   xQueue = xQueueCreate(3, sizeof(int));
-  xTaskCreatePinnedToCore(taskProduce, "taskProduce", 4096, NULL, 1, NULL, 0);
-  xTaskCreatePinnedToCore(taskConsume, "taskConsume", 4096, NULL, 1, NULL, 1);
+  xTaskCreatePinnedToCore(taskProduce, "taskProduce", configMINIMAL_STACK_SIZE+1024, NULL, 1, NULL, 0);
+  xTaskCreatePinnedToCore(taskConsume, "taskConsume", configMINIMAL_STACK_SIZE+1024, NULL, 1, NULL, 1);
   Serial.println("System ready");
 }
 
