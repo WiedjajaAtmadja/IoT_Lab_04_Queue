@@ -36,7 +36,7 @@ void setup() {
   digitalWrite(LED_RED, LOW);
 
   xQueue = xQueueCreate(10, sizeof(int));
-  xTaskCreatePinnedToCore(taskConsume, "taskConsume", 4096, NULL, 1, NULL, 1);
+  xTaskCreatePinnedToCore(taskConsume, "taskConsume", configMINIMAL_STACK_SIZE+1024, NULL, 1, NULL, 1);
   attachInterrupt(digitalPinToInterrupt(PUSH_BUTTON), isrPushButton, FALLING);
 
   Serial.println("System ready");
